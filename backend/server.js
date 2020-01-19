@@ -22,6 +22,12 @@ mongoose.connection.on('connected', (err) => {
 	console.log('DB connected');
 })
 
+const exerciseRouter = require('./Routes/exercise');
+const userRouter = require('./Routes/user');
+
+app.use('/exercises',exerciseRouter);
+app.use('/users',userRouter);
+
 app.listen(port, () => {
 	console.log('Running on port ' +port);
 });
