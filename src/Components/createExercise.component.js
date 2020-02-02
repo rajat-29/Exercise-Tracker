@@ -1,37 +1,37 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
 
 export default class createExercise extends Component {
 
 	constructor(props) {
 		super(props);
 
-		this.onChangeUserName = this.onChangeUserName.bind(this);
+		this.state = {
+			username : '',
+			description : '',
+			duration : 0,
+			date : new Date(),
+			users : []
+		}
+		this.onChangeUsername = this.onChangeUsername.bind(this);
 		this.onChangedescription = this.onChangedescription.bind(this);
 		this.onChangeduration = this.onChangeduration.bind(this);
 		this.onChangedate = this.onChangedate.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
-
-		this.state = {
-			userName : '',
-			description : '',
-			duration : '',
-			date : new Date(),
-			users : []
-		}
 	}
 
 	componentDidMount() {
 		this.setState({
 			users : ['test user'],
 			username: 'test user'
-		})
+		});
 	}
 
-	onChangeUserName(e) {
+	onChangeUsername(e) {
 		this.setState({
-			userName : e.target.value
+			username : e.target.value
 		});
 	}
 
@@ -57,13 +57,19 @@ export default class createExercise extends Component {
 		e.preventDefault() // stop default form submit
 		console.log('s')
 
-		const exercise = new Object();
-		exercise.userName = this.state.userName;
-		exercise.description = this.state.description;
-		exercise.duration = this.state.duration;
-		exercise.date = this.state.date;
+		const exercise = {
+			username : this.state.username,
+			description : this.state.description,
+			duration : this.state.duration,
+			date : this.state.date,
+		}
 
-		window.location = '/';
+		console.log(exercise)
+
+		axios.post('http://localhost:5000/exercises/add', exercise)
+			.then(res => alert(res.data));
+				window.location = '/';
+		
 	}
 
 
@@ -73,16 +79,21 @@ export default class createExercise extends Component {
 				<h3>Create New Exercise</h3>
 				<form onSubmit={this.onSubmit}>
 					<div className="form-group">
-						<label>UserName : </label>
-						<select ref="userInput" required className="form-control" value={this.state.userName} onChange={this.onChangeUserName}>
-						{
-							this.state.users.map(function(user) {
+						<label>Username:</label>
+						<select ref='userInput'
+							required
+							className='form-control'
+							value={this.state.username}
+							onChange={this.onChangeUsername}>
+							{
+								this.state.users.map(user => {
 									return <option
 										key={user}
 										value={user}>{user}
+
 									</option>
-							})
-						}
+								})
+							}
 						</select>
 					</div>
 

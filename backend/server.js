@@ -2,7 +2,9 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var mongodb = require('mongodb');
-var port = 8000;
+var port = 5000;
+const cors = require('cors');
+const morgan=require('morgan');
 
 var mongoose = require('mongoose');
 var mongoDb = 'mongodb://localhost/exerciseTracker';
@@ -11,6 +13,8 @@ mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
 mongoose.connect(mongoDb, {useNewUrlParser : true});
 
+app.use(cors());
+app.use(cors({origin: true, credentials: true}));
 app.use(express.urlencoded({extended: true}))
 app.use(express.json()) 
 
@@ -25,6 +29,7 @@ mongoose.connection.on('connected', (err) => {
 const exerciseRouter = require('./Routes/exercise');
 const userRouter = require('./Routes/user');
 
+app.use(morgan('tiny'));
 app.use('/exercises',exerciseRouter);
 app.use('/users',userRouter);
 
