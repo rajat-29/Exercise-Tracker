@@ -55,7 +55,7 @@ export default class createExercise extends Component {
 
 	onSubmit(e) {
 		e.preventDefault() // stop default form submit
-		
+
 		const exercise = {
 			username : this.state.username,
 			description : this.state.description,
@@ -64,8 +64,7 @@ export default class createExercise extends Component {
 		}
 
 		axios.post('http://localhost:5000/exercises/add', exercise)
-			.then(res => window.location = '/',alert("data saved"));
-					
+			.then(res => window.location = '/',alert("Exercise Added"));	
 	}
 
 	render() {

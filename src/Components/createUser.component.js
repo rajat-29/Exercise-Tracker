@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 export default class createUser extends Component {
 
@@ -6,8 +7,8 @@ export default class createUser extends Component {
 		super(props);
 
 		this.state = {
-			username : '',
-			age : '',
+			username : 'test_user',
+			age : '0',
 		}
 		this.onChangeUsername = this.onChangeUsername.bind(this);
 		this.onChangeAge = this.onChangeAge.bind(this);
@@ -30,11 +31,12 @@ export default class createUser extends Component {
 		e.preventDefault() // stop default form submit
 	
 		const userData = {
-			username : this.state.username,
+			name : this.state.username,
 			age : this.state.age,
 		}
 
-		console.log(userData)			
+		axios.post('http://localhost:5000/users/add', userData)
+			.then(res => window.location = '/',alert("User Added"));			
 	}
 
 	render() {

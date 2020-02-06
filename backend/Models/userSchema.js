@@ -4,15 +4,9 @@ var Schema = mongoose.Schema;
 var userSchema = new mongoose.Schema({
 	name: {
         type : String,
-        required : true,
-        unique : true,
-        minlength : 3,
     },
-    email: {
+    age: {
         type : String,
-        required : true,
-        unique : true,
-        minlength : 3,
     },
 })
 
