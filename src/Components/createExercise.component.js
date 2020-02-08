@@ -23,6 +23,19 @@ export default class createExercise extends Component {
 	}
 
 	componentDidMount() {
+		axios.get('http://localhost:5000/users/getUsers')
+			.then(res => {
+				if (res.data.length > 0) {
+					this.setState({
+						users: res.data.map(user => user.name),
+						username: res.data[0].username
+					});
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+
 		this.setState({
 			users : ['test user'],
 			username: 'test user'

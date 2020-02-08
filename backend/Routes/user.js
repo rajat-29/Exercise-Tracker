@@ -1,16 +1,24 @@
 var app = require('express').Router();
 let path = require('path');
 
-var users = require('../Models/userSchema');
+let user = require('../Models/userSchema');
 
-app.post('/add', function(req,res) {
-    users.create(req.body,function(error,result) {
+app.route('/add').post((req, res) => {
+    user.create(req.body,function(error,result) {
         if(error)
           throw error;
         else{
-          res.send("data saved");
+          
         }
+
     })
+    res.send("data saved");
 })
+
+app.route('/getUsers').get((req, res) => {
+    user.find()
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('error ' + err))
+});
 
 module.exports = app;

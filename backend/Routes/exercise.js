@@ -4,7 +4,6 @@ let path = require('path');
 let exercise = require('../Models/exerciseSchema');
 
 app.route('/add').post((req, res) => {
-	console.log(req.body)
     exercise.create(req.body,function(error,result)
       {
         if(error)
