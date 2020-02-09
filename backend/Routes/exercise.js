@@ -25,4 +25,25 @@ app.route('/:id').delete((req, res) => {
         .catch(err => res.status(400).json('error ' + err));
 });
 
+app.route('/:id').get((req, res) => {
+    exercise.findById(req.params.id)
+        .then(exercise => res.json(exercise))
+        .catch(err => res.status(400).json('error ' + err));
+});
+
+app.route('/update/:id').put((req, res) => {
+    exercise.findById(req.params.id)
+        .then(exercise => {
+
+            exercise.username = req.body.username;
+            exercise.description = req.body.description;
+            exercise.duration = Number(req.body.duration);
+            exercise.date = Date.parse(req.body.date);
+
+            exercise.save()
+                .then(() => { res.json('exercise updated!'); })
+                .catch(err => res.status(400).json('error ' + err));
+        })
+});
+
 module.exports = app;

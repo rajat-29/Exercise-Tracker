@@ -17,6 +17,7 @@ class App extends Component {
         <Navbar />
         <br />
         <Route path="/" exact component={ ExerciseList } />
+        <Route path='/edit/:id' component={EditExercise} />
         <Route path="/create" component={ createExercise } />
         <Route path="/user" component={ createUser } />
       </div>
