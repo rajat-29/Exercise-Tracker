@@ -19,4 +19,10 @@ app.route('/getExercises').get((req, res) => {
         .catch(err => res.status(400).json('error ' + err))
 });
 
+app.route('/:id').delete((req, res) => {
+    exercise.findByIdAndDelete(req.params.id)
+        .then(() => { res.json('exercise deleted'); })
+        .catch(err => res.status(400).json('error ' + err));
+});
+
 module.exports = app;

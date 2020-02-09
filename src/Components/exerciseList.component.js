@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const Exercise = props => (
@@ -8,7 +9,7 @@ const Exercise = props => (
 		<td>{props.exercise.duration}</td>
 		<td>{props.exercise.date.substring(0, 10)}</td>
 		<td>
-			
+			<Link to={'/edit/' + props.exercise._id}>Edit</Link> || <a href='#' onClick={() => { props.deleteExercise(props.exercise._id) }}>Delete</a>
 		</td>
 	</tr>
 )
@@ -26,7 +27,6 @@ export default class ExerciseList extends Component {
 	componentDidMount() {
 		axios.get('http://localhost:5000/exercises/getExercises')
 			.then(res => {
-				console.log(res);
 				this.setState({
 					exercises: res.data,
 				});
@@ -36,9 +36,16 @@ export default class ExerciseList extends Component {
 			});
 	}
 
+	deleteExercise(id) {
+		axios.delete('http://localhost:5000/exercises/' + id)
+			.then(res => {
+				window.location = '/';
+			});
+	}
+
 	exerciseList() {
 		return this.state.exercises.map(currentexercise => {
-			return <Exercise exercise={currentexercise} key={currentexercise._id} />;
+			return <Exercise exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id} />;
 		});
 	}
 
