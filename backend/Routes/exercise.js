@@ -13,5 +13,10 @@ app.route('/add').post((req, res) => {
      res.send("data saved");
 });
 
+app.route('/getExercises').get((req, res) => {
+    exercise.find()
+        .then(users => res.json(users))
+        .catch(err => res.status(400).json('error ' + err))
+});
 
 module.exports = app;
