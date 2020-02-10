@@ -6,25 +6,13 @@ var port = 5000;
 const cors = require('cors');
 const morgan=require('morgan');
 
-var mongoose = require('mongoose');
-var mongoDb = 'mongodb://localhost/exerciseTracker';
-
-mongoose.set('useFindAndModify', false);
-mongoose.set('useUnifiedTopology', true);
-mongoose.connect(mongoDb, {useNewUrlParser : true});
-
 app.use(cors());
 app.use(cors({origin: true, credentials: true}));
 app.use(express.urlencoded({extended: true}))
 app.use(express.json()) 
 
-mongoose.connection.on('error', (err) => {
-	console.log('DB connection error');
-})
-
-mongoose.connection.on('connected', (err) => {
-	console.log('DB connected');
-})
+// DB //
+require("./static/db");
 
 const exerciseRouter = require('./Routes/exercise');
 const userRouter = require('./Routes/user');
