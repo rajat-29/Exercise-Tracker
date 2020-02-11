@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var mongoDb = 'mongodb://localhost/exerciseTracker';
+var mongoDb = process.env.DB_MONGO;
 mongoose.Promise = global.Promise;
 
 mongoose.set('useFindAndModify', false);

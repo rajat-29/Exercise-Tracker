@@ -1,7 +1,7 @@
 var app = require('express').Router();
 let path = require('path');
 
-let exercise = require('../Models/exerciseSchema');
+let exercise = require('../../Models/exerciseSchema');
 
 app.route('/add').post((req, res) => {
     exercise.create(req.body,function(error,result)

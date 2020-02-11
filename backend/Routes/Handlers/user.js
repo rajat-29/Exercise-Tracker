@@ -1,7 +1,7 @@
 var app = require('express').Router();
 let path = require('path');
 
-let user = require('../Models/userSchema');
+let user = require('../../Models/userSchema');
 
 app.route('/add').post((req, res) => {
     user.create(req.body,function(error,result) {
