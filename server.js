@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var app = express();
 var mongodb = require('mongodb');
-var port = process.env.PORT || 5000;   
+var port = process.env.PORT || 8080;   
 const cors = require('cors');
 const morgan=require('morgan');
 require("dotenv").config();

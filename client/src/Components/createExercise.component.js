@@ -23,7 +23,7 @@ export default class createExercise extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('http://localhost:5000/users/getUsers')
+		axios.get('/users/getUsers')
 			.then(res => {
 				if (res.data.length > 0) {
 					this.setState({
@@ -76,7 +76,7 @@ export default class createExercise extends Component {
 			date : this.state.date,
 		}
 
-		axios.post('http://localhost:5000/exercises/add', exercise)
+		axios.post('/exercises/add', exercise)
 			.then(res => window.location = '/',alert("Exercise Added"));	
 	}
 

@@ -35,7 +35,7 @@ export default class createUser extends Component {
 			age : this.state.age,
 		}
 
-		axios.post('http://localhost:5000/users/add', userData)
+		axios.post('/users/add', userData)
 			.then(res => window.location = '/',alert("User Added"));			
 	}
 
