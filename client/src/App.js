@@ -7,13 +7,14 @@ import ExerciseList from "./Components/exerciseList.component";
 import EditExercise from "./Components/editExercise.component";
 import createExercise from "./Components/createExercise.component";
 import CreateUser from "./Components/createUser.component"; 
+import Login from "./Components/login.component";
 
 class App extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      isLogined : true,
+      isLogined : false,
     }
   }
 
@@ -32,7 +33,7 @@ class App extends Component {
       </div>
     </Router>
     </div>
-    : <CreateUser />
+    : <Login />
   );
 }
 }
