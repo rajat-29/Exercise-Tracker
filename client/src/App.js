@@ -7,7 +7,6 @@ import ExerciseList from "./Components/exerciseList.component";
 import EditExercise from "./Components/editExercise.component";
 import createExercise from "./Components/createExercise.component";
 import CreateUser from "./Components/createUser.component"; 
-import Login from "./Components/login.component";
 
 class App extends Component {
 
@@ -28,7 +27,7 @@ class App extends Component {
   const {isLogined} = this.state;
 
   return (
-    isLogined ? <div>
+    <div>
     <Router>
       <div className="container">
         <Navbar />
@@ -36,10 +35,10 @@ class App extends Component {
         <Route path="/" exact component={ ExerciseList } />
         <Route path='/edit/:id' component={ EditExercise } />
         <Route path="/create" component={ createExercise } />
+        <Route path="/user" component={ CreateUser } />
       </div>
     </Router>
     </div>
-    : <Login onSubmit={this.onAuth} />
   );
 }
 }

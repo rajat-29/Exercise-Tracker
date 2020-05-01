@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import Button from '@material-ui/core/Button';
 
 export default class Navbar extends Component {
 	render() {
@@ -18,13 +18,6 @@ export default class Navbar extends Component {
 						<li className='navbar-item'>
 							<Link to='/user' className='nav-link'>Create User</Link>
 						</li>
-
-						<NavDropdown title="Categories" id="collasible-nav-dropdown">
-					        <NavDropdown.Item href="#action/3.1">Add Category</NavDropdown.Item>
-					        <NavDropdown.Item href="#action/3.2">Manage Category</NavDropdown.Item>
-      					</NavDropdown>
-
-
 					</ul>
 				</div>
 			</nav>
