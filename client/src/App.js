@@ -18,6 +18,12 @@ class App extends Component {
     }
   }
 
+  onAuth = ()=> {
+    this.setState({ 
+      isLogined: true 
+    })
+  }
+
   render() {
   const {isLogined} = this.state;
 
@@ -33,7 +39,7 @@ class App extends Component {
       </div>
     </Router>
     </div>
-    : <Login />
+    : <Login onSubmit={this.onAuth} />
   );
 }
 }
